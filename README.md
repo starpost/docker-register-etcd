@@ -34,10 +34,10 @@ Etcd Tree Result:
 # etcdctl -C 192.168.0.10:4001 ls --recursive /backends
 /backends
 /backends/MyBackend
-/backends/MyBackend/1d4533cf99b3
-/backends/MyBackend/1d4533cf99b3/url
+/backends/MyBackend/servers/1d4533cf99b3
+/backends/MyBackend/servers/1d4533cf99b3/url
 
-# etcdctl -C 192.168.0.10:4001 get /backends/MyBackend/1d4533cf99b3/url
+# etcdctl -C 192.168.0.10:4001 get /backends/MyBackend/servers/1d4533cf99b3/url
 192.168.56.17:8080
 ```
 
