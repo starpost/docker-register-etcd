@@ -36,7 +36,7 @@ do
   for j in $HOSTS
   do
     # use host name to compare
-    h=`echo $i | cut -f 4 -d '/'`
+    h=`echo $i | cut -f 5 -d '/'`
     if [ "$h" = "$j" ]
     then
       IN=1
