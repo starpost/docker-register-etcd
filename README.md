@@ -41,3 +41,8 @@ Etcd Tree Result:
 192.168.56.17:8080
 ```
 
+See Also
+--------
+
+[starpost/nginx-proxy-etcd](https://hub.docker.com/r/starpost/nginx-proxy-etcd/)
+
