@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ETCD_HOST="{{ .Env.ETCD_HOST }}"
-REMOVE_UNKNOWN_BACKEND="{{ .Env.REMOVE_UNKNOWN_BACKEND }}"
+REMOVE_UNKNOWN_BACKEND="{{.Env.REMOVE_UNKNOWN_BACKEND}}"
 
 # Alive Hosts
 HOSTS=""
@@ -26,7 +26,7 @@ etcdctl -C $ETCD_HOST set --ttl=10 /backends/{{ $backend }}/servers/{{ $containe
 
 {{ end }}
 
-if [ "$REMOVE_UNKNOWN_BACKEND" != "" ]
+if [ "$REMOVE_UNKNOWN_BACKEND" = "true" ]
 then
 
 # Remove entry in etcd but not in HOSTS list
@@ -53,6 +53,8 @@ do
     INVALID="$INVALID $i"
   fi
 done
+
+echo "Removing unknown backends: $INVALID"
 
 for i in $INVALID
 do
