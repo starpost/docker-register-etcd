@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ETCD_HOST="{{ .Env.ETCD_HOST }}"
+REMOVE_UNKNOWN_BACKEND="{{ .Env.REMOVE_UNKNOWN_BACKEND }}"
 
 # Alive Hosts
 HOSTS=""
@@ -24,6 +25,9 @@ etcdctl -C $ETCD_HOST set --ttl=10 /backends/{{ $backend }}/servers/{{ $containe
 
 
 {{ end }}
+
+if [ "$REMOVE_UNKNOWN_BACKEND" != "" ]
+then
 
 # Remove entry in etcd but not in HOSTS list
 IN_ETCD=`etcdctl -C $ETCD_HOST ls --recursive | grep '/backends/[^/]*/servers/[^/]*$'`
@@ -55,3 +59,4 @@ do
   etcdctl -C $ETCD_HOST rm --recursive $i
 done
 
+fi
